@@ -4,11 +4,16 @@ import os
 import os.path
 from PIL import Image
 from matplotlib import pyplot as plt
+import glob
 
-path1 = os.path.abspath('..\\data\\train\\Type_1')
-path2 = os.path.abspath('..\\data\\train\\Type_2')
-path3 = os.path.abspath('..\\data\\train\\Type_3')
+path1 = os.path.abspath('../data/train/Type_1')
+path2 = os.path.abspath('../data/train/Type_2')
+path3 = os.path.abspath('../data/train/Type_3')
 folders = [path1, path2, path3]
+
+def load_images():
+    for filename in glob.iglob('../data/train/**/*.jpg', recursive=True):
+        return filename
 
 def load_images_from_folder(folder):
     images = []
@@ -21,8 +26,8 @@ def load_images_from_folder(folder):
 
 # all_images = [img for folder in folders for img in load_images_from_folder(folder)]
 
-for folder in folders:
-   images = load_images_from_folder(folder)
+# for folder in folders:
+#    images = load_images_from_folder(folder)
 
 def show_image(img: np.ndarray, img_name: str="image"):
     """
@@ -33,24 +38,23 @@ def show_image(img: np.ndarray, img_name: str="image"):
     cv2.destroyAllWindows()
 
 
-img2 = Image.open(path1 + '\\12.jpg')
 img = cv2.imread(os.path.join(path1, '12.jpg'))
 print(img.shape)
 
 ## count pixels having RGB values in defined range ~ assuming red if RGB value > 200
 ## Using opencv
-RED_MIN = np.array([200, 200, 200], np.uint8)
-RED_MAX = np.array([255, 255, 255], np.uint8)
-
-dst = cv2.inRange(img, RED_MIN, RED_MAX)
-no_red = cv2.countNonZero(dst)
-print("number of red pixels is: " + str(no_red))
-plt.hist(img.ravel(), 56, [0, 56])
-plt.show()
-
-cv2.namedWindow("opencv", cv2.WINDOW_NORMAL)
-cv2.imshow("opencv", img)
-cv2.waitKey(0)
+# RED_MIN = np.array([200, 200, 200], np.uint8)
+# RED_MAX = np.array([255, 255, 255], np.uint8)
+#
+# dst = cv2.inRange(img, RED_MIN, RED_MAX)
+# no_red = cv2.countNonZero(dst)
+# print("number of red pixels is: " + str(no_red))
+# plt.hist(img.ravel(), 56, [0, 56])
+# plt.show()
+#
+# cv2.namedWindow("opencv", cv2.WINDOW_NORMAL)
+# cv2.imshow("opencv", img)
+# cv2.waitKey(0)
 
 ## Using PIL
 # upper = (255, 255, 255)
