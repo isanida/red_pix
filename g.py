@@ -40,10 +40,7 @@ for t in [1]:
             cv2.destroyAllWindows()
 
             # features : histograms
-            red = img[:,:,2]
-            h, _ = np.histogram(red, bins=np.arange(257), normed=True)
-
-            plt.hist(hsv.flatten(), 256, [0, 256], color='r')
+            plt.hist(mask.flatten(), 256, [0, 256], color='r')
             plt.xlim([0, 256])
             plt.legend('histogram', loc='upper left')
 

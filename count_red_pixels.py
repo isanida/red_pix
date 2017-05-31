@@ -2,9 +2,9 @@ import numpy as np
 import cv2
 import os
 import os.path
-from PIL import Image
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 import glob
+
 
 path1 = os.path.abspath('../data/train/Type_1')
 path2 = os.path.abspath('../data/train/Type_2')
